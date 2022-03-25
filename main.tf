@@ -3,7 +3,7 @@
 # Production
 
 resource "aws_vpc" "main" {
-  cidr_block       = var.vpc_cidr1
+  cidr_block       = "10.20.0.0/16"
   instance_tenancy = "default"
 
   tags = {
@@ -14,7 +14,7 @@ resource "aws_vpc" "main" {
 # Development
 
 resource "aws_vpc" "dev" {
-  cidr_block       = var.vpc_cidr2
+  cidr_block       = "11.20.0.0/16"
   instance_tenancy = "default"
 
   tags = {
@@ -315,7 +315,7 @@ resource "aws_vpc_peering_connection" "Prod-Dev" {
 resource "aws_instance" "test-ec2-instance" {
   ami             = "ami-0885b1f6bd170450c"
   instance_type   = "t2.micro"
-  key_name        = "nv_keypair"
+  key_name        = "mykey27"
   vpc_security_group_ids = ["${aws_security_group.all_traffic1.id}"]
   tags = {
     Name = "web-rpoduction"
@@ -326,7 +326,7 @@ resource "aws_instance" "test-ec2-instance" {
 resource "aws_instance" "web1" {
   ami                         = "ami-0885b1f6bd170450c"
   instance_type               = "t2.micro"
-  key_name                    = "vpc_prod"
+  key_name                    = "mykey27"
   vpc_security_group_ids      = ["${aws_security_group.all_traffic1.id}"]
   associate_public_ip_address = true
 
@@ -340,7 +340,7 @@ resource "aws_instance" "web1" {
 resource "aws_instance" "web2" {
   ami           = "ami-0885b1f6bd170450c"
   instance_type = "t2.micro"
-  key_name        = "vpc_prod"
+  key_name        = "mykey27"
   vpc_security_group_ids = ["${aws_security_group.all_traffic2.id}"]
   tags = {
     Name = "web-development"
@@ -350,7 +350,7 @@ resource "aws_instance" "web2" {
 resource "aws_instance" "DB1" {
   ami           = "ami-0885b1f6bd170450c"
   instance_type = "t2.micro"
-  key_name        = "vpc_prod"
+  key_name        = "mykey27"
   vpc_security_group_ids = ["${aws_security_group.all_traffic1.id}"]
   tags = {
     Name = "DB-production"
@@ -360,7 +360,7 @@ resource "aws_instance" "DB1" {
 resource "aws_instance" "DB2" {
   ami           = "ami-0885b1f6bd170450c"
   instance_type = "t2.micro"
-  key_name      = "vpc_prod"
+  key_name      = "mykey27"
   vpc_security_group_ids = ["${aws_security_group.all_traffic2.id}"]
   tags = {
     Name = "DB-development"
@@ -370,7 +370,7 @@ resource "aws_instance" "DB2" {
 resource "aws_instance" "app1" {
   ami           = "ami-0885b1f6bd170450c"
   instance_type = "t2.micro"
-  key_name      = "vpc_prod"
+  key_name      = "mykey27"
   vpc_security_group_ids = ["${aws_security_group.all_traffic1.id}"]
   tags = {
     Name = "app1-production"
@@ -380,7 +380,7 @@ resource "aws_instance" "app1" {
 resource "aws_instance" "app2" {
   ami           = "ami-0885b1f6bd170450c"
   instance_type = "t2.micro"
-  key_name      = "vpc_prod"
+  key_name      = "mykey27"
   vpc_security_group_ids = ["${aws_security_group.all_traffic1.id}"]
   tags = {
     Name = "app2-production"
@@ -390,7 +390,7 @@ resource "aws_instance" "app2" {
 resource "aws_instance" "DBCache" {
   ami           = "ami-0885b1f6bd170450c"
   instance_type = "t2.micro"
-  key_name      = "vpc_prod"
+  key_name      = "mykey27"
   vpc_security_group_ids = ["${aws_security_group.all_traffic1.id}"]
   tags = {
     Name = "DBCache"

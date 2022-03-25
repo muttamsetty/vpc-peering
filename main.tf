@@ -311,7 +311,6 @@ resource "aws_vpc_peering_connection" "Prod-Dev" {
 }
 
 # Create EC2 instances in their respective VPCs
-/*
 resource "aws_instance" "test-ec2-instance" {
   ami             = "ami-0885b1f6bd170450c"
   instance_type   = "t2.micro"
@@ -322,7 +321,6 @@ resource "aws_instance" "test-ec2-instance" {
   }
   subnet_id = aws_subnet.web1.id
 }
-*/
 resource "aws_instance" "web1" {
   ami                         = "ami-0885b1f6bd170450c"
   instance_type               = "t2.micro"
@@ -336,7 +334,6 @@ resource "aws_instance" "web1" {
   subnet_id = aws_subnet.web1.id
 
 }
-/*
 resource "aws_instance" "web2" {
   ami           = "ami-0885b1f6bd170450c"
   instance_type = "t2.micro"
